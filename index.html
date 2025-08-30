@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Progression Timeline</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Age Progression AI</h1>
+            <p>See yourself age, one year at a time.</p>
+        </header>
+
+        <main>
+            <div id="initial-view">
+                <div class="instructions">
+                    Start by providing a clear, front-facing photo of yourself.
+                </div>
+                <div class="button-group">
+                    <button id="upload-button" class="button-primary">
+                        <img src="upload-icon.png" alt="" class="icon">
+                        Upload Photo
+                    </button>
+                    <input type="file" id="file-input" accept="image/*" style="display: none;">
+                    <button id="camera-button" class="button-primary">
+                        <img src="camera-icon.png" alt="" class="icon">
+                        Use Camera
+                    </button>
+                </div>
+            </div>
+
+            <div id="camera-view" class="hidden">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas" class="hidden"></canvas>
+                <div class="button-group">
+                    <button id="capture-button" class="button-primary">Capture</button>
+                    <button id="cancel-camera-button" class="button-secondary">Cancel</button>
+                </div>
+            </div>
+
+            <div id="timeline-view" class="hidden">
+                <div class="image-container">
+                    <img id="timeline-image" src="" alt="Your photo timeline">
+                    <div id="loading-overlay" class="hidden">
+                        <div class="spinner"></div>
+                        <p>Aging in progress...</p>
+                    </div>
+                </div>
+                <h2 id="year-display">Present Day</h2>
+                <div class="navigation-buttons">
+                    <button id="prev-year-button" class="nav-button" disabled>&lt; Prev</button>
+                    <button id="next-year-button" class="nav-button">Next Year &gt;</button>
+                </div>
+                 <button id="start-over-button" class="button-secondary">Start Over</button>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
