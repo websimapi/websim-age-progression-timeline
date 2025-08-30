@@ -37,6 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNCTIONS ---
 
+    /**
+     * Converts a URL to a base64 data URL.
+     * @param {string} url The URL to convert.
+     * @returns {Promise<string>} A promise that resolves with the data URL.
+     */
+    async function urlToDataUrl(url) {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    }
+
     function handleFileSelect(event) {
         const file = event.target.files[0];
         if (file) {
@@ -135,7 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 aspect_ratio: "1:1"
             });
             
-            imageTimeline.push(result.url);
+            // The result URL must be converted to a data URL for the next generation step.
+            const newImageAsDataUrl = await urlToDataUrl(result.url);
+            imageTimeline.push(newImageAsDataUrl);
             currentYearIndex++;
         } catch (error) {
             console.error("Image generation failed:", error);
@@ -161,4 +179,3 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingOverlay.classList.add('hidden');
     }
 });
-
